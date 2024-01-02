@@ -34,7 +34,10 @@
           "type": "Image",
           "config": {
             "label": "header_image",
-            "constraint": {},
+            "constraint": {
+              "width": 535,
+              "height": 353
+            },
             "thumbnails": []
           }
         }
