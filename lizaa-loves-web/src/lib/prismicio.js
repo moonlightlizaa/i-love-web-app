@@ -24,6 +24,21 @@ const routes = [
 	{
 		type: 'page',
 		path: '/:uid'
+	},
+	{
+		type: "page",
+		uid: "portfolio",
+		path: "/:uid"
+	},
+	{
+		type: "page",
+		uid: "blog",
+		path: "/:uid"
+	},
+	{
+		type: "page",
+		uid: "about-me",
+		path: "/:uid"
 	}
 ];
 

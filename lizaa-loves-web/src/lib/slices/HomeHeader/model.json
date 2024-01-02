@@ -40,6 +40,22 @@
             },
             "thumbnails": []
           }
+        },
+        "header_button_text": {
+          "type": "Text",
+          "config": {
+            "label": "header_button_text",
+            "placeholder": ""
+          }
+        },
+        "header_button": {
+          "type": "Link",
+          "config": {
+            "label": "header_button_link",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "select": null
+          }
         }
       },
       "items": {}

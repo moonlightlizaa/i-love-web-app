@@ -4,6 +4,126 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type BlogPostDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Blog Post documents
+ */
+interface BlogPostDocumentData {
+	/**
+	 * Slice Zone field in *Blog Post*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#slices
+	 */
+	slices: prismic.SliceZone<BlogPostDocumentDataSlicesSlice> /**
+	 * Meta Description field in *Blog Post*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: blog_post.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */;
+	meta_description: prismic.KeyTextField;
+
+	/**
+	 * Meta Image field in *Blog Post*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	meta_image: prismic.ImageField<never>;
+
+	/**
+	 * Meta Title field in *Blog Post*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: blog_post.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Blog Post document from Prismic
+ *
+ * - **API ID**: `blog_post`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type BlogPostDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+	Simplify<BlogPostDocumentData>,
+	'blog_post',
+	Lang
+>;
+
+/**
+ * Item in *Navigation → Links*
+ */
+export interface NavigationDocumentDataLinksItem {
+	/**
+	 * Label field in *Navigation → Links*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: navigation.links[].label
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	label: prismic.RichTextField;
+
+	/**
+	 * Link field in *Navigation → Links*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: navigation.links[].link
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	link: prismic.LinkField;
+}
+
+/**
+ * Content for Navigation documents
+ */
+interface NavigationDocumentData {
+	/**
+	 * Links field in *Navigation*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: navigation.links[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	links: prismic.GroupField<Simplify<NavigationDocumentDataLinksItem>>;
+}
+
+/**
+ * Navigation document from Prismic
+ *
+ * - **API ID**: `navigation`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type NavigationDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+	Simplify<NavigationDocumentData>,
+	'navigation',
+	Lang
+>;
+
 type PageDocumentDataSlicesSlice = HomeHeaderSlice | RichTextSlice;
 
 /**
@@ -79,7 +199,75 @@ export type PageDocument<Lang extends string = string> = prismic.PrismicDocument
 	Lang
 >;
 
-export type AllDocumentTypes = PageDocument;
+type PortfolioProjectDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Portfolio Project documents
+ */
+interface PortfolioProjectDocumentData {
+	/**
+	 * Slice Zone field in *Portfolio Project*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: portfolio_project.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#slices
+	 */
+	slices: prismic.SliceZone<PortfolioProjectDocumentDataSlicesSlice> /**
+	 * Meta Description field in *Portfolio Project*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: portfolio_project.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */;
+	meta_description: prismic.KeyTextField;
+
+	/**
+	 * Meta Image field in *Portfolio Project*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: portfolio_project.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	meta_image: prismic.ImageField<never>;
+
+	/**
+	 * Meta Title field in *Portfolio Project*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: portfolio_project.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Portfolio Project document from Prismic
+ *
+ * - **API ID**: `portfolio_project`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PortfolioProjectDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+	Simplify<PortfolioProjectDocumentData>,
+	'portfolio_project',
+	Lang
+>;
+
+export type AllDocumentTypes =
+	| BlogPostDocument
+	| NavigationDocument
+	| PageDocument
+	| PortfolioProjectDocument;
 
 /**
  * Primary content in *HomeHeader → Primary*
@@ -114,6 +302,26 @@ export interface HomeHeaderSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/field#image
 	 */
 	header_image: prismic.ImageField<never>;
+
+	/**
+	 * header_button_text field in *HomeHeader → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: home_header.primary.header_button_text
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	header_button_text: prismic.KeyTextField;
+
+	/**
+	 * header_button_link field in *HomeHeader → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: home_header.primary.header_button
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	header_button: prismic.LinkField;
 }
 
 /**
@@ -195,9 +403,18 @@ declare module '@prismicio/client' {
 
 	namespace Content {
 		export type {
+			BlogPostDocument,
+			BlogPostDocumentData,
+			BlogPostDocumentDataSlicesSlice,
+			NavigationDocument,
+			NavigationDocumentData,
+			NavigationDocumentDataLinksItem,
 			PageDocument,
 			PageDocumentData,
 			PageDocumentDataSlicesSlice,
+			PortfolioProjectDocument,
+			PortfolioProjectDocumentData,
+			PortfolioProjectDocumentDataSlicesSlice,
 			AllDocumentTypes,
 			HomeHeaderSlice,
 			HomeHeaderSliceDefaultPrimary,
