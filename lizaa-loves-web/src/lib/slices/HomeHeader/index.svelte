@@ -1,6 +1,7 @@
 <script>
 	import { PrismicRichText } from '@prismicio/svelte';
 	import { PrismicImage } from '@prismicio/svelte';
+	import {PrismicLink} from '@prismicio/svelte';
 	import Label from './Label.svelte';
 
 	/** @type {import("@prismicio/client").Content.HomeHeaderSlice} */
@@ -16,11 +17,14 @@
 			<section class="header-text">
 				<PrismicRichText field={slice.primary.header_text} />
 			</section>
+			<section class="header-button-portfolio"> 
+		
+			</section>
 	</section>
 
 	<section class="header-intro-img">
 			<section class="header-image">
-				<PrismicImage field={slice.primary.header_image} width="535px" />
+				<PrismicImage field={slice.primary.header_image} width="450px" />
 			</section>
 	</section>
 </section>
@@ -28,13 +32,14 @@
 <style>
 
 	:root {
+		--white: #FFFFFF;
 		--background-color: #F9F6F7;
 		--primary-text: #5C3D4D;
 		--primary-pink: #F3B0C3;
 	}
 
 	.header {
-		max-width: 1250px;
+		max-width: 1150px;
 		margin: 0 auto;
 
 		display: grid;
@@ -53,11 +58,12 @@
 	}
 
 	.header-title {
+
 		color: var(--primary-pink);
 		font-family: Quincy CF;
-		font-size: 3.5em;
-		font-weight: 700;
-		line-height: 120%; /* 67.2px */
+		font-size: 3em;
+		font-weight: 500;
+		
 	}
 
 	.header-text {
@@ -70,6 +76,20 @@
 
 	.header-image {
 		width: 400px;
+	}
+
+	.header-button-portfolio a {
+		background-color: var(--primary-pink);
+		color: white;
+		padding: 14px 25px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+
+		color: var(white);
+		font-family: Montserrat;
+		font-size: 1em;
+		font-weight: 600;
 	}
 
 
