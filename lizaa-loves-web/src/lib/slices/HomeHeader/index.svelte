@@ -9,7 +9,7 @@
 </script>
 
 
-<section class="header">
+<!-- <section class="header">
 	<section class="header-intro">
 			<section class="header-title">
 				<PrismicRichText field={slice.primary.header_title} />
@@ -93,4 +93,4 @@
 	}
 
 
-</style>
+</style> -->

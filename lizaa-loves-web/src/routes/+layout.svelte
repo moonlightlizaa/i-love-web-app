@@ -19,8 +19,6 @@
 	{/if}
 </svelte:head>
 
-<nav>
-</nav>
 
 <main>
 	<slot />
@@ -29,12 +27,3 @@
 
 <PrismicPreview {repositoryName} />
 
-<style>
-	* {
-		box-sizing: border-box;
-  		margin: 0 auto;
-  		padding: 0px;
-		
-	}
-
-</style>
