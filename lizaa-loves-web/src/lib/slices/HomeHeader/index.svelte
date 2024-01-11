@@ -18,7 +18,7 @@
 				<PrismicRichText field={slice.primary.header_text} />
 			</section>
 			<section class="header-button-portfolio"> 
-		
+				
 			</section>
 	</section>
 
