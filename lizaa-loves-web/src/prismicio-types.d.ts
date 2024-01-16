@@ -4,12 +4,56 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type BlogPostDocumentDataSlicesSlice = never;
+type BlogPostDocumentDataSlicesSlice = BlogPostContentSlice;
 
 /**
  * Content for Blog Post documents
  */
 interface BlogPostDocumentData {
+	/**
+	 * Title field in *Blog Post*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post.title
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	title: prismic.RichTextField;
+
+	/**
+	 * Description field in *Blog Post*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post.description
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	description: prismic.RichTextField;
+
+	/**
+	 * Featured Image field in *Blog Post*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post.featured_image
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	featured_image: prismic.ImageField<never>;
+
+	/**
+	 * Publication Date field in *Blog Post*
+	 *
+	 * - **Field Type**: Date
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post.publication_date
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#date
+	 */
+	publication_date: prismic.DateField;
+
 	/**
 	 * Slice Zone field in *Blog Post*
 	 *
@@ -270,6 +314,61 @@ export type AllDocumentTypes =
 	| PortfolioProjectDocument;
 
 /**
+ * Primary content in *BlogPostContent → Items*
+ */
+export interface BlogPostContentSliceDefaultItem {
+	/**
+	 * Blog Text field in *BlogPostContent → Items*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post_content.items[].blog_text
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	blog_text: prismic.RichTextField;
+
+	/**
+	 * Blog Image field in *BlogPostContent → Items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post_content.items[].blog_image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	blog_image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for BlogPostContent Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlogPostContentSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Record<string, never>,
+	Simplify<BlogPostContentSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *BlogPostContent*
+ */
+type BlogPostContentSliceVariation = BlogPostContentSliceDefault;
+
+/**
+ * BlogPostContent Shared Slice
+ *
+ * - **API ID**: `blog_post_content`
+ * - **Description**: BlogPostContent
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlogPostContentSlice = prismic.SharedSlice<
+	'blog_post_content',
+	BlogPostContentSliceVariation
+>;
+
+/**
  * Primary content in *HomeHeader → Primary*
  */
 export interface HomeHeaderSliceDefaultPrimary {
@@ -416,6 +515,10 @@ declare module '@prismicio/client' {
 			PortfolioProjectDocumentData,
 			PortfolioProjectDocumentDataSlicesSlice,
 			AllDocumentTypes,
+			BlogPostContentSlice,
+			BlogPostContentSliceDefaultItem,
+			BlogPostContentSliceVariation,
+			BlogPostContentSliceDefault,
 			HomeHeaderSlice,
 			HomeHeaderSliceDefaultPrimary,
 			HomeHeaderSliceVariation,
