@@ -168,7 +168,7 @@ export type NavigationDocument<Lang extends string = string> = prismic.PrismicDo
 	Lang
 >;
 
-type PageDocumentDataSlicesSlice = HomeHeaderSlice | RichTextSlice;
+type PageDocumentDataSlicesSlice = AboutMeSlice | IntroHeaderSlice | RichTextSlice;
 
 /**
  * Content for Page documents
@@ -314,6 +314,78 @@ export type AllDocumentTypes =
 	| PortfolioProjectDocument;
 
 /**
+ * Primary content in *AboutMe → Primary*
+ */
+export interface AboutMeSliceDefaultPrimary {
+	/**
+	 * Title field in *AboutMe → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: about_me.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField;
+
+	/**
+	 * Text field in *AboutMe → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: about_me.primary.text
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	text: prismic.RichTextField;
+
+	/**
+	 * Label field in *AboutMe → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: about_me.primary.label
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	label: prismic.KeyTextField;
+
+	/**
+	 * Link field in *AboutMe → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: about_me.primary.link
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	link: prismic.LinkField;
+}
+
+/**
+ * Default variation for AboutMe Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AboutMeSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<AboutMeSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *AboutMe*
+ */
+type AboutMeSliceVariation = AboutMeSliceDefault;
+
+/**
+ * AboutMe Shared Slice
+ *
+ * - **API ID**: `about_me`
+ * - **Description**: AboutMe
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AboutMeSlice = prismic.SharedSlice<'about_me', AboutMeSliceVariation>;
+
+/**
  * Primary content in *BlogPostContent → Items*
  */
 export interface BlogPostContentSliceDefaultItem {
@@ -369,86 +441,56 @@ export type BlogPostContentSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *HomeHeader → Primary*
+ * Primary content in *IntroHeader → Primary*
  */
-export interface HomeHeaderSliceDefaultPrimary {
+export interface IntroHeaderSliceDefaultPrimary {
 	/**
-	 * header_title field in *HomeHeader → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: home_header.primary.header_title
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-	 */
-	header_title: prismic.RichTextField;
-
-	/**
-	 * header_text field in *HomeHeader → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: home_header.primary.header_text
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-	 */
-	header_text: prismic.RichTextField;
-
-	/**
-	 * header_image field in *HomeHeader → Primary*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: home_header.primary.header_image
-	 * - **Documentation**: https://prismic.io/docs/field#image
-	 */
-	header_image: prismic.ImageField<never>;
-
-	/**
-	 * header_button_text field in *HomeHeader → Primary*
+	 * Title field in *IntroHeader → Primary*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: home_header.primary.header_button_text
+	 * - **API ID Path**: intro_header.primary.title
 	 * - **Documentation**: https://prismic.io/docs/field#key-text
 	 */
-	header_button_text: prismic.KeyTextField;
+	title: prismic.KeyTextField;
 
 	/**
-	 * header_button_link field in *HomeHeader → Primary*
+	 * Text field in *IntroHeader → Primary*
 	 *
-	 * - **Field Type**: Link
+	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: home_header.primary.header_button
-	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 * - **API ID Path**: intro_header.primary.text
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
 	 */
-	header_button: prismic.LinkField;
+	text: prismic.RichTextField;
 }
 
 /**
- * Default variation for HomeHeader Slice
+ * Default variation for IntroHeader Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type HomeHeaderSliceDefault = prismic.SharedSliceVariation<
+export type IntroHeaderSliceDefault = prismic.SharedSliceVariation<
 	'default',
-	Simplify<HomeHeaderSliceDefaultPrimary>,
+	Simplify<IntroHeaderSliceDefaultPrimary>,
 	never
 >;
 
 /**
- * Slice variation for *HomeHeader*
+ * Slice variation for *IntroHeader*
  */
-type HomeHeaderSliceVariation = HomeHeaderSliceDefault;
+type IntroHeaderSliceVariation = IntroHeaderSliceDefault;
 
 /**
- * HomeHeader Shared Slice
+ * IntroHeader Shared Slice
  *
- * - **API ID**: `home_header`
- * - **Description**: HomeHeader
+ * - **API ID**: `intro_header`
+ * - **Description**: IntroHeader
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type HomeHeaderSlice = prismic.SharedSlice<'home_header', HomeHeaderSliceVariation>;
+export type IntroHeaderSlice = prismic.SharedSlice<'intro_header', IntroHeaderSliceVariation>;
 
 /**
  * Primary content in *RichText → Primary*
@@ -515,14 +557,18 @@ declare module '@prismicio/client' {
 			PortfolioProjectDocumentData,
 			PortfolioProjectDocumentDataSlicesSlice,
 			AllDocumentTypes,
+			AboutMeSlice,
+			AboutMeSliceDefaultPrimary,
+			AboutMeSliceVariation,
+			AboutMeSliceDefault,
 			BlogPostContentSlice,
 			BlogPostContentSliceDefaultItem,
 			BlogPostContentSliceVariation,
 			BlogPostContentSliceDefault,
-			HomeHeaderSlice,
-			HomeHeaderSliceDefaultPrimary,
-			HomeHeaderSliceVariation,
-			HomeHeaderSliceDefault,
+			IntroHeaderSlice,
+			IntroHeaderSliceDefaultPrimary,
+			IntroHeaderSliceVariation,
+			IntroHeaderSliceDefault,
 			RichTextSlice,
 			RichTextSliceDefaultPrimary,
 			RichTextSliceVariation,

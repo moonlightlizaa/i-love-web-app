@@ -101,11 +101,15 @@
 						</section>
 					</nav>
 					<!-- svelte body -->
-					<div style="display: contents">%sveltekit.body%</div>
+					<div class="site" style="display: contents">%sveltekit.body%</div>
 	</body>
 
 
 <style>
+
+			@import url("https://use.typekit.net/cez4afr.css");
+
+
 
 			:root {
 				--primary-background-color:  #F9F6F7;
@@ -125,17 +129,33 @@
 
 			body {
 				background-color: var(--primary-background-color);
+
+				display: grid;
+				grid:
+					"sidebar content " 1fr
+					"sidebar content " 1fr
+					"sidebar content " 1fr
+					/ 120px 1fr;
+			}
+
+
+			.site {
+		
+				grid-area: content;
 			}
 				
 			
 			/* navigation styling */
 				
 			.container {
-			display: flex;
+	
 			align-items: center;
 			width: 100%;
 			min-height: 100vh;
+			grid-area: sidebar;
+
 			}
+
 
 			.sidebar {
 			position: relative;
@@ -355,6 +375,7 @@
   $(".menu-btn").click(function () {
 	$(".sidebar").toggleClass("active");
   });
+
   </script>
 
 </html>
