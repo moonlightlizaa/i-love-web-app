@@ -33,7 +33,7 @@
 	.header-title {
 		color: #5C3D4D;
 		font-family: Quincy CF;
-		font-size: 40px;
+		font-size: 22px;
 		font-style: normal;
 		font-weight: 500;
 		line-height: 120%; /* 48px */
@@ -44,12 +44,12 @@
 	.header-text {
 		color: #5C3D4D;
 		font-family: Montserrat;
-		font-size: 16px;
+		font-size: 1em;
 		font-style: normal;
 		font-weight: 400;
 		line-height: 150%; /* 24px */
 
 		border-top: 0.5px solid #5C3D4D;
-		padding: 0.7em;
+		padding-top: 1em;
 	}
 </style>
