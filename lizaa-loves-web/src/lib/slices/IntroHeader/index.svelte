@@ -27,7 +27,7 @@
 		padding: 30px;
 
 		border-radius: 26px;
-		margin-top: 100px;
+		margin-top: 50px;
 	}
 
 	.header-title {
