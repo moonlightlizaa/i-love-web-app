@@ -67,45 +67,21 @@
 											<span class="text">Blog</span>
 										</a>
 										</li>
-										<li>
-										<!-- <a href="#"></a>
-											<i class="icon ph-bold ph-chart-bar"></i>
-											<span class="text">Income</span>
-											<i class="arrow ph-bold ph-caret-down"></i> -->
-										
-										
-										<!-- <ul class="sub-menu">
-											<li>
-											<a href="#">
-												<span class="text">Earnings</span>
-											</a>
-											</li>
-											<li>
-											<a href="#">
-												<span class="text">Funds</span>
-											</a>
-											</li>
-											<li>
-											<a href="#">
-												<span class="text">Declines</span>
-											</a>
-											</li>
-											<li>
-											<a href="#">
-												<span class="text">Payouts</span>
-											</a>
-											</li>
-									</ul> -->
+									</ul> 
 								</section>
 							</section>
 						</section>
 					</nav>
 					<!-- svelte body -->
-					<div style="display: contents">%sveltekit.body%</div>
+					<div class="site" style="display: contents">%sveltekit.body%</div>
 	</body>
 
 
 <style>
+
+			@import url("https://use.typekit.net/cez4afr.css");
+
+
 
 			:root {
 				--primary-background-color:  #F9F6F7;
@@ -125,17 +101,34 @@
 
 			body {
 				background-color: var(--primary-background-color);
+
+				display: grid;
+				grid:
+					"sidebar content " 1fr
+					"sidebar content " 1fr
+					"sidebar content " 1fr
+					/ 300px 1fr;
 			}
-				
+
+
+			.site {
+		
+				grid-area: content;
+			}
+
+			
 			
 			/* navigation styling */
 				
 			.container {
-			display: flex;
+	
 			align-items: center;
 			width: 100%;
 			min-height: 100vh;
+			grid-area: sidebar;
+
 			}
+
 
 			.sidebar {
 			position: relative;
@@ -339,22 +332,39 @@
 </style>
 
 <script>
-	$(".menu > ul > li").click(function (e) {
-	// remove active from already active
-	$(this).siblings().removeClass("active");
-	// add active to clicked
-	$(this).toggleClass("active");
-	// if has sub menu open it
-	$(this).find("ul").slideToggle();
-	// close other sub menu if any open
-	$(this).siblings().find("ul").slideUp();
-	// remove active class of sub menu items
-	$(this).siblings().find("ul").find("li").removeClass("active");
+  $(document).ready(function () {
+    // Check if the sidebar is initially open or closed
+    if ($(".sidebar").hasClass("active")) {
+      $("body").css("grid-template-columns", "300px 1fr");
+    } else {
+      $("body").css("grid-template-columns", "300px 1fr");
+    }
   });
-  
+
+  $(".menu > ul > li").click(function (e) {
+    // remove active from already active
+    $(this).siblings().removeClass("active");
+    // add active to clicked
+    $(this).toggleClass("active");
+    // if has sub menu open it
+    $(this).find("ul").slideToggle();
+    // close other sub menu if any open
+    $(this).siblings().find("ul").slideUp();
+    // remove active class of sub menu items
+    $(this).siblings().find("ul").find("li").removeClass("active");
+  });
+
   $(".menu-btn").click(function () {
-	$(".sidebar").toggleClass("active");
+    $(".sidebar").toggleClass("active");
+    toggleGrid();
   });
+
+  // Function to toggle grid layout based on sidebar state
+  function toggleGrid() {
+    var sidebarWidth = $(".sidebar").width();
+    var newGridTemplate = sidebarWidth > 130 ? "130px 1fr" : "300px 1fr";
+    $("body").css("grid-template-columns", newGridTemplate);
+  }
   </script>
 
 </html>

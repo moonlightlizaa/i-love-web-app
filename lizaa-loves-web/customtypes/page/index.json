@@ -27,7 +27,10 @@
 				"fieldset": "Slice Zone",
 				"config": {
 					"choices": {
-						"home_header": {
+						"about_me": {
+							"type": "SharedSlice"
+						},
+						"intro_header": {
 							"type": "SharedSlice"
 						},
 						"rich_text": {

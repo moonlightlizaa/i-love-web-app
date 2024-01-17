@@ -4,12 +4,56 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type BlogPostDocumentDataSlicesSlice = never;
+type BlogPostDocumentDataSlicesSlice = BlogPostContentSlice;
 
 /**
  * Content for Blog Post documents
  */
 interface BlogPostDocumentData {
+	/**
+	 * Title field in *Blog Post*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post.title
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	title: prismic.RichTextField;
+
+	/**
+	 * Description field in *Blog Post*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post.description
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	description: prismic.RichTextField;
+
+	/**
+	 * Featured Image field in *Blog Post*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post.featured_image
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	featured_image: prismic.ImageField<never>;
+
+	/**
+	 * Publication Date field in *Blog Post*
+	 *
+	 * - **Field Type**: Date
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post.publication_date
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#date
+	 */
+	publication_date: prismic.DateField;
+
 	/**
 	 * Slice Zone field in *Blog Post*
 	 *
@@ -124,7 +168,7 @@ export type NavigationDocument<Lang extends string = string> = prismic.PrismicDo
 	Lang
 >;
 
-type PageDocumentDataSlicesSlice = HomeHeaderSlice | RichTextSlice;
+type PageDocumentDataSlicesSlice = AboutMeSlice | IntroHeaderSlice | RichTextSlice;
 
 /**
  * Content for Page documents
@@ -270,86 +314,183 @@ export type AllDocumentTypes =
 	| PortfolioProjectDocument;
 
 /**
- * Primary content in *HomeHeader → Primary*
+ * Primary content in *AboutMe → Primary*
  */
-export interface HomeHeaderSliceDefaultPrimary {
+export interface AboutMeSliceDefaultPrimary {
 	/**
-	 * header_title field in *HomeHeader → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: home_header.primary.header_title
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-	 */
-	header_title: prismic.RichTextField;
-
-	/**
-	 * header_text field in *HomeHeader → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: home_header.primary.header_text
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-	 */
-	header_text: prismic.RichTextField;
-
-	/**
-	 * header_image field in *HomeHeader → Primary*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: home_header.primary.header_image
-	 * - **Documentation**: https://prismic.io/docs/field#image
-	 */
-	header_image: prismic.ImageField<never>;
-
-	/**
-	 * header_button_text field in *HomeHeader → Primary*
+	 * Title field in *AboutMe → Primary*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: home_header.primary.header_button_text
+	 * - **API ID Path**: about_me.primary.title
 	 * - **Documentation**: https://prismic.io/docs/field#key-text
 	 */
-	header_button_text: prismic.KeyTextField;
+	title: prismic.KeyTextField;
 
 	/**
-	 * header_button_link field in *HomeHeader → Primary*
+	 * Text field in *AboutMe → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: about_me.primary.text
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	text: prismic.RichTextField;
+
+	/**
+	 * Label field in *AboutMe → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: about_me.primary.label
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	label: prismic.KeyTextField;
+
+	/**
+	 * Link field in *AboutMe → Primary*
 	 *
 	 * - **Field Type**: Link
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: home_header.primary.header_button
+	 * - **API ID Path**: about_me.primary.link
 	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
 	 */
-	header_button: prismic.LinkField;
+	link: prismic.LinkField;
 }
 
 /**
- * Default variation for HomeHeader Slice
+ * Default variation for AboutMe Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type HomeHeaderSliceDefault = prismic.SharedSliceVariation<
+export type AboutMeSliceDefault = prismic.SharedSliceVariation<
 	'default',
-	Simplify<HomeHeaderSliceDefaultPrimary>,
+	Simplify<AboutMeSliceDefaultPrimary>,
 	never
 >;
 
 /**
- * Slice variation for *HomeHeader*
+ * Slice variation for *AboutMe*
  */
-type HomeHeaderSliceVariation = HomeHeaderSliceDefault;
+type AboutMeSliceVariation = AboutMeSliceDefault;
 
 /**
- * HomeHeader Shared Slice
+ * AboutMe Shared Slice
  *
- * - **API ID**: `home_header`
- * - **Description**: HomeHeader
+ * - **API ID**: `about_me`
+ * - **Description**: AboutMe
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type HomeHeaderSlice = prismic.SharedSlice<'home_header', HomeHeaderSliceVariation>;
+export type AboutMeSlice = prismic.SharedSlice<'about_me', AboutMeSliceVariation>;
+
+/**
+ * Primary content in *BlogPostContent → Items*
+ */
+export interface BlogPostContentSliceDefaultItem {
+	/**
+	 * Blog Text field in *BlogPostContent → Items*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post_content.items[].blog_text
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	blog_text: prismic.RichTextField;
+
+	/**
+	 * Blog Image field in *BlogPostContent → Items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post_content.items[].blog_image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	blog_image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for BlogPostContent Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlogPostContentSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Record<string, never>,
+	Simplify<BlogPostContentSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *BlogPostContent*
+ */
+type BlogPostContentSliceVariation = BlogPostContentSliceDefault;
+
+/**
+ * BlogPostContent Shared Slice
+ *
+ * - **API ID**: `blog_post_content`
+ * - **Description**: BlogPostContent
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlogPostContentSlice = prismic.SharedSlice<
+	'blog_post_content',
+	BlogPostContentSliceVariation
+>;
+
+/**
+ * Primary content in *IntroHeader → Primary*
+ */
+export interface IntroHeaderSliceDefaultPrimary {
+	/**
+	 * Title field in *IntroHeader → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: intro_header.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField;
+
+	/**
+	 * Text field in *IntroHeader → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: intro_header.primary.text
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	text: prismic.RichTextField;
+}
+
+/**
+ * Default variation for IntroHeader Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type IntroHeaderSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<IntroHeaderSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *IntroHeader*
+ */
+type IntroHeaderSliceVariation = IntroHeaderSliceDefault;
+
+/**
+ * IntroHeader Shared Slice
+ *
+ * - **API ID**: `intro_header`
+ * - **Description**: IntroHeader
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type IntroHeaderSlice = prismic.SharedSlice<'intro_header', IntroHeaderSliceVariation>;
 
 /**
  * Primary content in *RichText → Primary*
@@ -416,10 +557,18 @@ declare module '@prismicio/client' {
 			PortfolioProjectDocumentData,
 			PortfolioProjectDocumentDataSlicesSlice,
 			AllDocumentTypes,
-			HomeHeaderSlice,
-			HomeHeaderSliceDefaultPrimary,
-			HomeHeaderSliceVariation,
-			HomeHeaderSliceDefault,
+			AboutMeSlice,
+			AboutMeSliceDefaultPrimary,
+			AboutMeSliceVariation,
+			AboutMeSliceDefault,
+			BlogPostContentSlice,
+			BlogPostContentSliceDefaultItem,
+			BlogPostContentSliceVariation,
+			BlogPostContentSliceDefault,
+			IntroHeaderSlice,
+			IntroHeaderSliceDefaultPrimary,
+			IntroHeaderSliceVariation,
+			IntroHeaderSliceDefault,
 			RichTextSlice,
 			RichTextSliceDefaultPrimary,
 			RichTextSliceVariation,
