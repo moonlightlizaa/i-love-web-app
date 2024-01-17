@@ -7,3 +7,5 @@
 </script>
 
 <SliceZone slices={data.page.data.slices} {components} />
+
+<!-- dit kom te zien op alle pagina's -->

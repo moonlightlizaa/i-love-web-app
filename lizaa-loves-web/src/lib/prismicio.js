@@ -39,7 +39,8 @@ const routes = [
 		type: "page",
 		uid: "about-me",
 		path: "/:uid"
-	}
+	},
+	
 ];
 
 /**
